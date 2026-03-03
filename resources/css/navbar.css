@@ -1,0 +1,94 @@
+/* ===== GLOBAL NAVBAR ===== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+.navbar.shrink {
+    padding: 8px 0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: black;
+}
+
+.logo span {
+    color: #dc2626;
+}
+
+/* Menu */
+.nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    height: 2px;
+    width: 0;
+    background: #dc2626;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Login Button */
+.login-btn {
+    border: 2px solid black;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-weight: 600;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background: black;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Logout Icon */
+.logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* Page spacing */
+.page-content {
+    padding-top: 100px;
+}
