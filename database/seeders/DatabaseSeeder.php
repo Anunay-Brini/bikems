@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'admin@bikems.com'],
             [
                 'name' => 'Admin',
-                'password' => 'password123',
+                'password' => \Illuminate\Support\Facades\Hash::make('password123'),
                 'role' => 'admin',
             ]
         );

@@ -25,6 +25,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/setup-admin', function () {
+    $u = App\Models\User::firstOrNew(['email' => 'admin@bikems.com']);
+    $u->name = 'Admin';
+    $u->password = \Illuminate\Support\Facades\Hash::make('password123');
+    $u->role = 'admin';
+    $u->save();
+    return 'Admin account successfully created! Go to /login and login with admin@bikems.com / password123';
+});
+
 // Static Footer Pages
 Route::get('/pricing', [BikeController::class, 'pricing'])->name('pages.pricing');
 Route::view('/about', 'pages.about')->name('pages.about');
