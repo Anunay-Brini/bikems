@@ -17,11 +17,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@bikems.com',
-            'password' => bcrypt('password123'),
-            'role' => 'admin',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@bikems.com'],
+            [
+                'name' => 'Admin',
+                'password' => bcrypt('password123'),
+                'role' => 'admin',
+            ]
+        );
     }
 }
