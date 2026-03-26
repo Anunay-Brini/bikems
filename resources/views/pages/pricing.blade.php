@@ -82,7 +82,7 @@
                             
                             <div class="relative bg-gray-800/50 backdrop-blur-sm border border-white/10 p-4 rounded-[2.5rem] shadow-inner">
                                 @if($bike->image)
-                                    <img src="{{ asset('storage/' . $bike->image) }}" alt="{{ $bike->name }}" class="w-full h-full object-contain rounded-[2rem] shadow-2xl transition-all duration-700 group-hover:rotate-1">
+                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($bike->image) }}" alt="{{ $bike->name }}" class="w-full h-full object-contain rounded-[2rem] shadow-2xl transition-all duration-700 group-hover:rotate-1">
                                 @else
                                     <img src="{{ asset('images/hero-bike.png') }}" alt="Default Bike" class="w-full h-full object-contain rounded-[2rem] shadow-2xl transition-all duration-700 group-hover:rotate-1">
                                 @endif
