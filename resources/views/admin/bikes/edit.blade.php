@@ -42,7 +42,7 @@
                             <p class="text-xs text-gray-500">PNG, JPG, GIF up to 2MB</p>
                         </div>
 
-                        <img id="image-preview" src="{{ $bike->image ? \Illuminate\Support\Facades\Storage::url($bike->image) : '#' }}" 
+                        <img id="image-preview" src="{{ $bike->image ? asset('storage/' . $bike->image) : '#' }}" 
                              alt="Preview" class="{{ $bike->image ? '' : 'hidden' }} max-h-48 rounded-lg shadow-sm">
                         
                         <input id="file-upload" name="image" type="file" accept="image/*" class="sr-only" onchange="previewImage(this)">

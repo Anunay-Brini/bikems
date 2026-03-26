@@ -27,7 +27,7 @@
                     <tr class="hover:bg-gray-50 transition-colors">
                         <td class="px-6 py-4 whitespace-nowrap">
                             @if($bike->image)
-                                <img src="{{ \Illuminate\Support\Facades\Storage::url($bike->image) }}" alt="{{ $bike->name }}" class="h-12 w-12 rounded-lg object-cover border border-gray-200 shadow-sm">
+                                <img src="{{ asset('storage/' . $bike->image) }}" alt="{{ $bike->name }}" class="h-12 w-12 rounded-lg object-cover border border-gray-200 shadow-sm">
                             @else
                                 <div class="h-12 w-12 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400">
                                     <i class="fa-solid fa-image"></i>

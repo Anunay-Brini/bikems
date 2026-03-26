@@ -21,7 +21,7 @@
                 <!-- Image Container -->
                 <div class="relative h-48 bg-gray-100 overflow-hidden">
                     @if($bike->image)
-                        <img src="{{ \Illuminate\Support\Facades\Storage::url($bike->image) }}" alt="{{ $bike->name }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <img src="{{ asset('storage/' . $bike->image) }}" alt="{{ $bike->name }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
                     @else
                         <div class="w-full h-full flex items-center justify-center bg-gray-50 text-gray-300">
                             <i class="fa-solid fa-motorcycle text-4xl"></i>

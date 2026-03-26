@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Auto-create storage symlink on boot (needed for Laravel Cloud / ephemeral filesystems)
+        $storageLinkPath = public_path('storage');
+        if (!file_exists($storageLinkPath) && !is_link($storageLinkPath)) {
+            try {
+                Artisan::call('storage:link');
+            } catch (\Exception $e) {
+                // Silently fail if storage:link can't be created
+            }
+        }
+
         try {
             if (\Illuminate\Support\Facades\Schema::hasTable('users')) {
                 \App\Models\User::firstOrCreate(
