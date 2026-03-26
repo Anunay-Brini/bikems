@@ -104,16 +104,17 @@ class BikeController extends Controller
             'image' => 'nullable|image|max:2048',
         ]);
 
-        $imagePath = null;
+        $imageData = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('bikes', 'public');
+            $file = $request->file('image');
+            $imageData = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
         }
 
         Bike::create([
             'name' => $request->name,
             'type' => $request->type,
             'price_per_day' => $request->price_per_day,
-            'image' => $imagePath,
+            'image_data' => $imageData,
             'status' => 'available',
         ]);
 
@@ -142,11 +143,8 @@ class BikeController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            // Delete old image if it exists
-            if ($bike->image) {
-                Storage::disk('public')->delete($bike->image);
-            }
-            $data['image'] = $request->file('image')->store('bikes', 'public');
+            $file = $request->file('image');
+            $data['image_data'] = 'data:' . $file->getMimeType() . ';base64,' . base64_encode(file_get_contents($file->getRealPath()));
         }
 
         $bike->update($data);

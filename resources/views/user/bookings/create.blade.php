@@ -99,8 +99,8 @@
         <div class="lg:col-span-1">
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden sticky top-32">
                 <div class="relative h-48 bg-gray-100">
-                    @if($bike->image)
-                        <img src="{{ asset('storage/' . $bike->image) }}" alt="{{ $bike->name }}" class="w-full h-full object-cover">
+                    @if($bike->image_data)
+                        <img src="{{ $bike->image_data }}" alt="{{ $bike->name }}" class="w-full h-full object-cover">
                     @else
                         <div class="w-full h-full flex items-center justify-center text-gray-300">
                             <i class="fa-solid fa-motorcycle text-4xl"></i>

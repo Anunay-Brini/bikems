@@ -10,6 +10,7 @@ class Bike extends Model
         'name',
         'type',
         'image',
+        'image_data',
         'price_per_day',
         'status',
     ];

@@ -81,8 +81,8 @@
                             <div class="absolute -inset-4 bg-brand-600/20 rounded-center blur-3xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
                             
                             <div class="relative bg-gray-800/50 backdrop-blur-sm border border-white/10 p-4 rounded-[2.5rem] shadow-inner">
-                                @if($bike->image)
-                                    <img src="{{ asset('storage/' . $bike->image) }}" alt="{{ $bike->name }}" class="w-full h-full object-contain rounded-[2rem] shadow-2xl transition-all duration-700 group-hover:rotate-1">
+                                @if($bike->image_data)
+                                    <img src="{{ $bike->image_data }}" alt="{{ $bike->name }}" class="w-full h-full object-contain rounded-[2rem] shadow-2xl transition-all duration-700 group-hover:rotate-1">
                                 @else
                                     <img src="{{ asset('images/hero-bike.png') }}" alt="Default Bike" class="w-full h-full object-contain rounded-[2rem] shadow-2xl transition-all duration-700 group-hover:rotate-1">
                                 @endif

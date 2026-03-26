@@ -20,8 +20,8 @@
             <div class="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col h-full transform scale-95 hover:scale-100 origin-center">
                 <!-- Image Container -->
                 <div class="relative h-48 bg-gray-100 overflow-hidden">
-                    @if($bike->image)
-                        <img src="{{ asset('storage/' . $bike->image) }}" alt="{{ $bike->name }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    @if($bike->image_data)
+                        <img src="{{ $bike->image_data }}" alt="{{ $bike->name }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
                     @else
                         <div class="w-full h-full flex items-center justify-center bg-gray-50 text-gray-300">
                             <i class="fa-solid fa-motorcycle text-4xl"></i>

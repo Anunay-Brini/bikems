@@ -42,8 +42,8 @@
                             <p class="text-xs text-gray-500">PNG, JPG, GIF up to 2MB</p>
                         </div>
 
-                        <img id="image-preview" src="{{ $bike->image ? asset('storage/' . $bike->image) : '#' }}" 
-                             alt="Preview" class="{{ $bike->image ? '' : 'hidden' }} max-h-48 rounded-lg shadow-sm">
+                        <img id="image-preview" src="{{ $bike->image_data ?? '#' }}" 
+                             alt="Preview" class="{{ $bike->image_data ? '' : 'hidden' }} max-h-48 rounded-lg shadow-sm">
                         
                         <input id="file-upload" name="image" type="file" accept="image/*" class="sr-only" onchange="previewImage(this)">
                         
