@@ -25,7 +25,7 @@
 <body class="font-sans text-gray-900 antialiased bg-gray-50">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 transition-all duration-300 bg-white border-b border-gray-100 shadow-sm">
+    <nav x-data="{ open: false }" class="fixed w-full z-50 transition-all duration-300 bg-white border-b border-gray-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
@@ -37,7 +37,8 @@
                     </a>
                 </div>
                 
-                <div class="flex items-center gap-6">
+                
+                <div class="hidden md:flex items-center gap-6">
                     @auth
                         @if(auth()->user()->role === 'admin')
                             <a href="{{ route('admin.dashboard') }}" class="text-sm font-medium text-gray-600 hover:text-brand-600 transition-colors">Dashboard</a>
@@ -71,6 +72,56 @@
                         </a>
                     @endauth
                 </div>
+
+                <!-- Hamburger -->
+                <div class="flex items-center md:hidden">
+                    <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Responsive Navigation Menu -->
+        <div :class="{'block': open, 'hidden': ! open}" class="hidden md:hidden bg-white border-b border-gray-100 animate-fade-in">
+            <div class="pt-2 pb-3 space-y-1 px-4">
+                @auth
+                    @if(auth()->user()->role === 'admin')
+                        <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Dashboard</a>
+                        <a href="{{ route('admin.reports') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Reports</a>
+                        <a href="{{ route('bikes.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Bikes</a>
+                    @elseif(auth()->user()->role === 'staff')
+                        <a href="{{ route('staff.dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Dashboard</a>
+                    @elseif(auth()->user()->role === 'delivery')
+                        <a href="{{ route('delivery.dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Dashboard</a>
+                    @elseif(auth()->user()->role === 'customer')
+                        <a href="{{ route('user.dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Dashboard</a>
+                        <a href="{{ route('my.bookings') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">My Bookings</a>
+                    @endif
+
+                    <div class="pt-4 pb-1 border-t border-gray-200">
+                        <div class="flex items-center px-3">
+                            <div class="ml-3">
+                                <div class="text-base font-medium text-gray-800">{{ Auth::user()->name }}</div>
+                                <div class="text-sm font-medium text-gray-500">{{ Auth::user()->email }}</div>
+                            </div>
+                        </div>
+                        <div class="mt-3 space-y-1">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">
+                                    Log Out
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Log in</a>
+                    <a href="{{ route('register') }}" class="block px-3 py-2 rounded-md text-base font-medium text-brand-600 hover:bg-brand-50">Get Started</a>
+                @endauth
             </div>
         </div>
     </nav>
