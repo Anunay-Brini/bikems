@@ -38,7 +38,7 @@
 <body class="font-sans text-gray-900 antialiased bg-white selection:bg-brand-100 selection:text-brand-900">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-100" id="navbar">
+    <nav x-data="{ open: false }" class="fixed w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-gray-100" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
@@ -64,9 +64,25 @@
                 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button class="text-gray-500 hover:text-gray-900 focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
+                    <button @click="open = ! open" class="text-gray-500 hover:text-gray-900 focus:outline-none transition-colors">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div :class="{'block': open, 'hidden': ! open}" class="hidden md:hidden bg-white border-b border-gray-100 animate-fade-in">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#features" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Features</a>
+                <a href="#how-it-works" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">How it Works</a>
+                <a href="#about" @click="open = false" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">About</a>
+                <div class="pt-4 border-t border-gray-100 mt-4">
+                    <a href="{{ route('login') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50">Log in</a>
+                    <a href="{{ route('register') }}" class="mt-2 block px-3 py-2 rounded-md text-base font-medium text-brand-600 bg-brand-50">Get Started</a>
                 </div>
             </div>
         </div>

@@ -18,6 +18,10 @@
             <img src="@yield('bg_image', asset('images/hero-bike.png'))" class="w-full h-full object-cover" alt="Background">
             <!-- Darker overlay for better contrast -->
             <div class="absolute inset-0 bg-gray-900/60 backdrop-blur-[2px] sm:backdrop-blur-sm"></div>
+            
+            <!-- Decorative Blobs for Mobile Vibe -->
+            <div class="absolute top-[-10%] left-[-10%] w-64 h-64 bg-brand-600/20 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-brand-500/20 rounded-full blur-3xl animate-pulse delay-700"></div>
         </div>
 
         <!-- Logo -->
